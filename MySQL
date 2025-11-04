@@ -1,0 +1,21 @@
+CREATE TABLE courses (
+  course_id INT AUTO_INCREMENT PRIMARY KEY,
+  course_name VARCHAR(100) NOT NULL,
+  duration VARCHAR(50)
+);
+
+CREATE TABLE students (
+  student_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  course_id INT,
+  balance DECIMAL(10,2) DEFAULT 0.0,
+  CONSTRAINT fk_course FOREIGN KEY (course_id) REFERENCES courses(course_id)
+);
+
+CREATE TABLE payments (
+  payment_id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id INT NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_student_payment FOREIGN KEY(student_id) REFERENCES students(student_id)
+);
